@@ -1,19 +1,17 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using ReservationSystem.Data;
 using ReservationSystem.Models;
 
 namespace ReservationSystem.Controllers
 {
     public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ReservationContext context)
     {
-        _logger = logger;
+        context.Database.EnsureCreated();
     }
-
+    
     public IActionResult Index()
     {
         return View();
